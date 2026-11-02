@@ -1,5 +1,7 @@
 # Microsserviço de Subtração — Time 2
 
+## Time 2 : Wolgrand e João Victor Moura
+
 > Componente da **Calculadora Distribuída** — ADS 6º Período  
 > Disciplina: **Gerenciamento de Configuração e Mudança de Software (GCMS)**
 
