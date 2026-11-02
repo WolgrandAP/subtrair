@@ -2,6 +2,7 @@
 
 > Componente da **Calculadora Distribuída** — ADS 6º Período  
 > Disciplina: **Gerenciamento de Configuração e Mudança de Software (GCMS)**
+
 > Integrantes: **Wolgrand e João Victor Moura**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
