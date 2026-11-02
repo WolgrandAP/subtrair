@@ -1,9 +1,8 @@
 # Microsserviço de Subtração — Time 2
 
-## Time 2 : Wolgrand e João Victor Moura
-
 > Componente da **Calculadora Distribuída** — ADS 6º Período  
 > Disciplina: **Gerenciamento de Configuração e Mudança de Software (GCMS)**
+> Integrantes: **Wolgrand e João Victor Moura**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
 [![Contract](https://img.shields.io/badge/contract-v1.0.0-green.svg)](CONTRATO_API.md)
