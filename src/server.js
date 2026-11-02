@@ -1,8 +1,5 @@
 const http = require('node:http');
 
-/**
- * Envia uma resposta JSON padronizada com código HTTP
- */
 function sendJson(res, statusCode, payload) {
   const body = JSON.stringify(payload);
   res.writeHead(statusCode, {
@@ -12,9 +9,7 @@ function sendJson(res, statusCode, payload) {
   res.end(body);
 }
 
-/**
- * Envia um erro padronizado conforme o contrato da API
- */
+
 function sendError(res, statusCode, codigo, mensagem) {
   sendJson(res, statusCode, {
     erro: {
@@ -24,14 +19,11 @@ function sendError(res, statusCode, codigo, mensagem) {
   });
 }
 
-/**
- * Cria a aplicação/servidor HTTP
- */
+
 function createServer() {
   return http.createServer((req, res) => {
     const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
 
-    // Endpoint de verificação de integridade (Health Check)
     if (req.method === 'GET' && (url.pathname === '/health' || url.pathname === '/')) {
       return sendJson(res, 200, {
         status: 'OK',
@@ -40,7 +32,6 @@ function createServer() {
       });
     }
 
-    // Endpoint de Subtração
     if (url.pathname === '/subtrair') {
       if (req.method !== 'POST') {
         return sendError(res, 405, 'METHOD_NOT_ALLOWED', 'Método HTTP não permitido. Utilize POST.');
@@ -50,7 +41,6 @@ function createServer() {
 
       req.on('data', (chunk) => {
         rawBody += chunk;
-        // Prevenção básica de payloads abusivos (> 1MB)
         if (rawBody.length > 1e6) {
           req.destroy();
         }
@@ -64,7 +54,6 @@ function createServer() {
           return sendError(res, 400, 'INVALID_JSON', 'O corpo da requisição deve ser um JSON válido.');
         }
 
-        // Validação de presença e tipo numérico restrito (número JSON, rejeitando null, strings e ausência)
         if (
           body === null ||
           typeof body !== 'object' ||
@@ -87,12 +76,10 @@ function createServer() {
       return;
     }
 
-    // Rota não encontrada
     return sendError(res, 404, 'NOT_FOUND', 'Endpoint não encontrado.');
   });
 }
 
-// Inicialização direta do servidor se executado pelo CLI
 if (require.main === module) {
   const PORT = process.env.PORT || 3002;
   const server = createServer();
